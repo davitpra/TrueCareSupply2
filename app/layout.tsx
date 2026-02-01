@@ -13,7 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr-CA">
-      <body>{children}</body>
+      <body>
+        <div style={{ width: '100%', maxWidth: '100%', overflowX: 'hidden' }}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

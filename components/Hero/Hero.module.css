@@ -1,6 +1,8 @@
 .hero {
   position: relative;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #0052cc 100%);
@@ -9,22 +11,39 @@
 }
 
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(61, 127, 255, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(0, 82, 204, 0.1) 0%, transparent 70%);
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(0, 212, 255, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(61, 127, 255, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(0, 82, 204, 0.1) 0%,
+      transparent 70%
+    );
   animation: gradientShift 15s ease infinite;
 }
 
 @keyframes gradientShift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-10px, 10px) scale(1.05); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-10px, 10px) scale(1.05);
+  }
 }
 
 .heroGrid {
@@ -38,22 +57,34 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 0.3;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
 }
 
 .heroContent {
   position: relative;
   z-index: 2;
   max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 60px;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 80px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .heroText h1 {
-  font-size: 5.5em;
+  font-size: 4.5em;
   color: white;
   font-weight: 900;
   line-height: 1.05;
@@ -109,11 +140,43 @@
   gap: 12px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  min-height: 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnPrimary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 82, 204, 0.1);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btnPrimary:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .btnPrimary:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.btnPrimary:hover .btnArrow {
+  transform: translateX(4px);
+}
+
+.btnArrow {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .btnSecondary {
@@ -127,12 +190,18 @@
   border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   transition: all 0.4s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
 }
 
 .btnSecondary:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: white;
   transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
 .heroFeatures {
@@ -160,6 +229,23 @@
   justify-content: center;
   font-size: 1.5em;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  will-change: transform;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heroFeature:hover .heroFeatureIcon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+.heroFeatureIcon svg {
+  color: #00d4ff;
+  transition: transform 0.3s ease;
+}
+
+.heroFeature:hover .heroFeatureIcon svg {
+  transform: scale(1.1);
 }
 
 .heroFeatureText {
@@ -196,11 +282,25 @@
   color: white;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.floatingCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .floatingCard:nth-child(2) {
@@ -225,13 +325,35 @@
 }
 
 @media (max-width: 1200px) {
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
   .heroContent {
     grid-template-columns: 1fr;
     gap: 60px;
   }
 
   .heroVisual {
-    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .heroCards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .floatingCard {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .floatingCard:nth-child(2) {
+    margin-top: 0;
+    margin-left: 0;
   }
 }
 
@@ -242,5 +364,61 @@
 
   .heroContent {
     padding: 0 30px;
+  }
+
+  .heroCards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .floatingCard {
+    width: 100%;
+  }
+
+  .heroFeatures {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .heroFeature {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .heroFeature:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .hero *,
+  .hero *::before,
+  .hero *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .floatingCard {
+    animation: none;
+  }
+
+  .hero::before {
+    animation: none;
+  }
+
+  .heroGrid {
+    animation: none;
+  }
+
+  .btnPrimary:hover,
+  .btnSecondary:hover,
+  .heroFeature:hover {
+    transform: none;
   }
 }
