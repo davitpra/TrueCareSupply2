@@ -1,5 +1,13 @@
 .section {
   padding: 140px 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .sectionHeader {
@@ -9,7 +17,9 @@
 }
 
 .sectionLabel {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: linear-gradient(135deg, rgba(0, 82, 204, 0.1), rgba(0, 212, 255, 0.1));
   color: var(--primary);
   padding: 10px 24px;
@@ -19,6 +29,24 @@
   letter-spacing: 0.5px;
   margin-bottom: 25px;
   text-transform: uppercase;
+  border: 1px solid rgba(0, 82, 204, 0.15);
+  transition: all 0.3s ease;
+}
+
+.sectionLabel:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.2);
+}
+
+.iconFlag {
+  font-size: 1.1em;
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
 }
 
 .sectionHeader h2 {
@@ -48,16 +76,64 @@
 .aboutText {
   font-size: 1.2em;
   line-height: 1.9;
-  color: #475569;
+  color: #334155;
+}
+
+.textBlock {
+  position: relative;
+  margin-bottom: 30px;
+  animation: fadeInLeft 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.visible .textBlock:nth-child(1) { animation-delay: 0.2s; }
+.visible .textBlock:nth-child(2) { animation-delay: 0.4s; }
+.visible .textBlock:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .aboutText p {
-  margin-bottom: 30px;
+  margin: 0;
 }
 
 .aboutText strong {
   color: var(--dark);
   font-weight: 700;
+}
+
+.badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  border: 1px solid rgba(0, 82, 204, 0.2);
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.15);
+  border-color: var(--primary);
 }
 
 .aboutHighlight {
@@ -68,6 +144,13 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(0, 82, 204, 0.4);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aboutHighlight:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 100px rgba(0, 82, 204, 0.5);
 }
 
 .aboutHighlight::before {
@@ -86,6 +169,20 @@
   to { transform: rotate(360deg); }
 }
 
+.decorativePattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, white 2px, white 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, white 2px, white 4px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
 .aboutHighlightContent {
   position: relative;
   z-index: 1;
@@ -95,6 +192,7 @@
   font-size: 2.2em;
   margin-bottom: 25px;
   font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .aboutHighlight p {
@@ -116,12 +214,43 @@
   border-radius: 16px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.metricItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.metricItem:hover::before {
+  left: 100%;
+}
+
+.metricItem:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .metricValue {
   font-size: 2.5em;
   font-weight: 900;
   margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.metricItem:hover .metricValue {
+  transform: scale(1.1);
 }
 
 .metricLabel {
@@ -129,10 +258,47 @@
   opacity: 0.9;
 }
 
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--primary);
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.05em;
+  margin-top: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.ctaButton:hover {
+  transform: translateX(5px);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.ctaArrow {
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.ctaButton:hover .ctaArrow {
+  transform: translateX(5px);
+}
+
 @media (max-width: 1200px) {
   .aboutGrid {
     grid-template-columns: 1fr;
     gap: 60px;
+  }
+
+  .aboutHighlight {
+    padding: 50px;
   }
 }
 
@@ -141,7 +307,104 @@
     padding: 80px 30px;
   }
 
+  .sectionHeader {
+    margin-bottom: 60px;
+  }
+
   .sectionHeader h2 {
     font-size: 2.5em;
+    letter-spacing: -1px;
+  }
+
+  .sectionSubtitle {
+    font-size: 1.2em;
+  }
+
+  .aboutText {
+    font-size: 1.1em;
+  }
+
+  .textBlock {
+    margin-bottom: 25px;
+  }
+
+  .badges {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .aboutHighlight {
+    padding: 40px 30px;
+  }
+
+  .aboutHighlight h3 {
+    font-size: 1.8em;
+  }
+
+  .aboutHighlight p {
+    font-size: 1.1em;
+  }
+
+  .aboutMetrics {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .metricItem {
+    padding: 20px;
+  }
+
+  .metricValue {
+    font-size: 2em;
+  }
+
+  .ctaButton {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2em;
+  }
+
+  .sectionLabel {
+    font-size: 0.8em;
+    padding: 8px 18px;
+  }
+
+  .aboutText {
+    font-size: 1em;
+  }
+
+  .aboutHighlight h3 {
+    font-size: 1.5em;
+  }
+
+  .metricValue {
+    font-size: 1.8em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .textBlock,
+  .metricItem,
+  .ctaButton,
+  .iconFlag {
+    animation: none;
+    transition: none;
+  }
+
+  .aboutHighlight::before {
+    animation: none;
   }
 }

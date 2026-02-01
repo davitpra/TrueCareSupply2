@@ -1,11 +1,46 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import styles from './About.module.css';
 
 export default function About() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="about" className={styles.section}>
+    <section
+      id="about"
+      ref={sectionRef}
+      className={`${styles.section} ${isVisible ? styles.visible : ''}`}
+      role="region"
+      aria-labelledby="about-heading"
+    >
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionLabel}>Qui nous sommes</span>
-        <h2>Le standard d&apos;excellence en fournitures médicales</h2>
+        <span className={styles.sectionLabel}>
+          <span className={styles.iconFlag}>🍁</span> Qui nous sommes
+        </span>
+        <h2 id="about-heading">Le standard d&apos;excellence en fournitures médicales</h2>
         <p className={styles.sectionSubtitle}>
           Une expertise québécoise inégalée au service de votre mission de soins
         </p>
@@ -13,26 +48,38 @@ export default function About() {
 
       <div className={styles.aboutGrid}>
         <div className={styles.aboutText}>
-          <p>
-            <strong>TrueCare Supply n&apos;est pas un simple fournisseur.</strong> Nous sommes votre
-            partenaire stratégique pour garantir la continuité absolue de vos opérations médicales,
-            en toutes circonstances.
-          </p>
+          <div className={styles.textBlock}>
+            <p>
+              <strong>TrueCare Supply n&apos;est pas un simple fournisseur.</strong> Nous sommes votre
+              partenaire stratégique pour garantir la continuité absolue de vos opérations médicales,
+              en toutes circonstances.
+            </p>
+          </div>
 
-          <p>
-            Notre expertise reconnue en gestion proactive des pénuries et notre réseau
-            d&apos;approvisionnement ultra-sécurisé nous permettent d&apos;assurer une disponibilité constante
-            des consommables essentiels, même dans les situations les plus critiques.
-          </p>
+          <div className={styles.textBlock}>
+            <p>
+              Notre expertise reconnue en gestion proactive des pénuries et notre réseau
+              d&apos;approvisionnement ultra-sécurisé nous permettent d&apos;assurer une disponibilité constante
+              des consommables essentiels, même dans les situations les plus critiques.
+            </p>
+          </div>
 
-          <p>
-            Parce que vos patients comptent sur vous chaque jour, nous avons bâti un système
-            d&apos;approvisionnement redondant, des partenariats mondiaux stratégiques et une logistique
-            d&apos;exception pour que <strong>vous ne manquiez jamais de rien</strong>.
-          </p>
+          <div className={styles.textBlock}>
+            <p>
+              Parce que vos patients comptent sur vous chaque jour, nous avons bâti un système
+              d&apos;approvisionnement redondant, des partenariats mondiaux stratégiques et une logistique
+              d&apos;exception pour que <strong>vous ne manquiez jamais de rien</strong>.
+            </p>
+          </div>
+
+          <div className={styles.badges}>
+            <span className={styles.badge}>✓ Certifié qualité</span>
+            <span className={styles.badge}>✓ Entreprise québécoise</span>
+          </div>
         </div>
 
         <div className={styles.aboutHighlight}>
+          <div className={styles.decorativePattern}></div>
           <div className={styles.aboutHighlightContent}>
             <h3>Notre promesse inébranlable</h3>
             <p>
@@ -41,15 +88,20 @@ export default function About() {
             </p>
 
             <div className={styles.aboutMetrics}>
-              <div className={styles.metricItem}>
-                <div className={styles.metricValue}>99.9%</div>
+              <div className={styles.metricItem} aria-label="Taux de disponibilité des produits">
+                <div className={styles.metricValue} data-value="99.9">99.9%</div>
                 <div className={styles.metricLabel}>Disponibilité produits</div>
               </div>
-              <div className={styles.metricItem}>
+              <div className={styles.metricItem} aria-label="Délai moyen de livraison">
                 <div className={styles.metricValue}>&lt; 24h</div>
                 <div className={styles.metricLabel}>Délai livraison moyen</div>
               </div>
             </div>
+
+            <a href="#contact" className={styles.ctaButton}>
+              Découvrir nos services
+              <span className={styles.ctaArrow}>→</span>
+            </a>
           </div>
         </div>
       </div>
