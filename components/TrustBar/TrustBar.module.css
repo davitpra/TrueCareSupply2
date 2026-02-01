@@ -1,7 +1,16 @@
 .trustBar {
   background: white;
-  padding: 60px 60px;
+  padding: clamp(2rem, 5vw, 3.75rem) clamp(1.25rem, 4vw, 3.75rem);
   box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: relative;
+}
+
+.trustBar.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .trustContent {
@@ -9,7 +18,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 60px;
+  gap: clamp(2rem, 4vw, 3.75rem);
 }
 
 .trustItem {
@@ -17,23 +26,119 @@
 }
 
 .trustNumber {
-  font-size: 4em;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
+  color: var(--primary);
   background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 15px;
+  margin-bottom: clamp(0.75rem, 1.5vw, 0.9375rem);
   line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.trustItem:hover .trustNumber {
+  transform: scale(1.1);
 }
 
 .trustLabel {
-  font-size: 1.15em;
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
   color: var(--gray);
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
+/* Indicadores (solo visibles en móvil) */
+.indicators {
+  display: none;
+}
+
+/* Fallback para navegadores sin soporte de background-clip */
+@supports not (-webkit-background-clip: text) {
+  .trustNumber {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
   .trustContent {
     grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+/* Móvil grande */
+@media (max-width: 640px) {
+  .trustBar {
+    padding-bottom: 3rem;
+  }
+
+  .trustContent {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .trustContent::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trustItem {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    padding: 1rem 2rem;
+  }
+
+  .trustNumber {
+    margin-bottom: 0.625rem;
+  }
+
+  .indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray);
+    opacity: 0.3;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot:hover {
+    opacity: 0.5;
+  }
+
+  .dotActive {
+    background: var(--primary);
+    opacity: 1;
+    width: 24px;
+    border-radius: 4px;
+  }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+  .trustBar {
+    padding: clamp(1.5rem, 4vw, 2rem) 0;
+    padding-bottom: 3rem;
+  }
+
+  .trustItem {
+    padding: 1rem 1.5rem;
   }
 }
