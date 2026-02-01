@@ -17,7 +17,7 @@
 .navContent {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 24px 60px;
+  padding: 16px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,7 +50,7 @@
 }
 
 .navLinks a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -86,8 +86,7 @@
   box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4);
   color: white !important;
 }
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navLinks {
     display: none;
   }
