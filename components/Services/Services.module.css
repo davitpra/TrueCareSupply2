@@ -1,6 +1,8 @@
 .section {
   padding: 140px 60px;
   background: var(--light-bg);
+  position: relative;
+  overflow: hidden;
 }
 
 .sectionHeader {
@@ -49,15 +51,27 @@
 }
 
 .serviceCard {
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   padding: 60px;
   border-radius: 30px;
   position: relative;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  transform: translateY(50px);
+  outline: 2px solid transparent;
+  outline-offset: 4px;
 }
 
+/* Animación de entrada al scroll */
+.serviceCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gradiente animado de fondo */
 .serviceCard::before {
   content: '';
   position: absolute;
@@ -65,27 +79,56 @@
   left: 0;
   width: 100%;
   height: 6px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  background-size: 200% 100%;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s;
+  animation: gradientShift 3s linear infinite;
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Efecto de profundidad con sombras múltiples */
 .serviceCard:hover {
   transform: translateY(-15px);
-  box-shadow: 0 30px 80px rgba(0, 82, 204, 0.15);
+  box-shadow:
+    0 10px 30px rgba(0, 82, 204, 0.08),
+    0 20px 50px rgba(0, 82, 204, 0.12),
+    0 30px 80px rgba(0, 82, 204, 0.15);
   border-color: rgba(0, 82, 204, 0.2);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .serviceCard:hover::before {
   transform: scaleX(1);
 }
 
+/* Estado de focus mejorado para accesibilidad */
+.serviceCard:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  transform: translateY(-5px);
+}
+
+.serviceCard:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .serviceHeader {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 25px;
   margin-bottom: 30px;
+  flex-wrap: wrap;
+  position: relative;
 }
 
 .serviceIcon {
@@ -96,8 +139,59 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5em;
   flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--primary);
+  position: relative;
+}
+
+/* Efecto de rotación y brillo en hover del icono */
+.serviceCard:hover .serviceIcon {
+  transform: rotate(5deg) scale(1.05);
+  background: linear-gradient(135deg, rgba(0, 82, 204, 0.15), rgba(0, 212, 255, 0.15));
+  box-shadow: 0 10px 25px rgba(0, 82, 204, 0.15);
+}
+
+/* Añadir brillo animado al icono */
+.serviceIcon::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(45deg) translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.serviceCard:hover .serviceIcon::after {
+  transform: rotate(45deg) translateX(100%);
+}
+
+/* Destacar métricas importantes */
+.serviceHighlight {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
+  transition: all 0.3s;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.serviceCard:hover .serviceHighlight {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4);
 }
 
 .serviceCard h3 {
@@ -105,33 +199,53 @@
   color: var(--dark);
   font-weight: 800;
   line-height: 1.2;
+  flex: 1;
+  min-width: 200px;
 }
 
 .serviceCard p {
   font-size: 1.15em;
   color: var(--gray);
   line-height: 1.8;
+  margin-bottom: 10px;
 }
 
 .serviceFeatures {
   list-style: none;
   margin-top: 30px;
+  padding: 0;
 }
 
-.serviceFeatures li {
+/* Microinteracción en cada feature */
+.featureItem {
   padding: 12px 0;
   color: #475569;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  padding-left: 8px;
+  margin-left: -8px;
 }
 
-.serviceFeatures li::before {
-  content: '✓';
+.featureItem:hover {
+  transform: translateX(8px);
+  background: rgba(0, 82, 204, 0.03);
   color: var(--primary);
-  font-weight: 900;
-  font-size: 1.2em;
+  padding-left: 16px;
+}
+
+.checkIcon {
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.featureItem:hover .checkIcon {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 2px 4px rgba(0, 82, 204, 0.3));
 }
 
 @media (max-width: 1200px) {
@@ -147,5 +261,52 @@
 
   .sectionHeader h2 {
     font-size: 2.5em;
+  }
+
+  .serviceCard {
+    padding: 40px 30px;
+  }
+
+  .serviceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .serviceHighlight {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+
+  /* Layout carousel para móvil */
+  .servicesGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px;
+    margin: -10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) rgba(0, 0, 0, 0.1);
+  }
+
+  .servicesGrid::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .servicesGrid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+
+  .servicesGrid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+  }
+
+  .serviceCard {
+    min-width: 90%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
 }
