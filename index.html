@@ -1,1333 +1,1486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr-CA">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TrueCare Supply - Leader en Fournitures Médicales</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-        :root {
-            --primary: #0052cc;
-            --primary-dark: #003d99;
-            --primary-light: #3d7fff;
-            --accent: #00d4ff;
-            --dark: #0a1628;
-            --gray: #64748b;
-            --light-bg: #f8fafc;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
-            color: #1e293b;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+      :root {
+        --primary: #0052cc;
+        --primary-dark: #003d99;
+        --primary-light: #3d7fff;
+        --accent: #00d4ff;
+        --dark: #0a1628;
+        --gray: #64748b;
+        --light-bg: #f8fafc;
+      }
 
-        /* Navigation Premium */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: saturate(180%) blur(20px);
-            z-index: 9999;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        line-height: 1.7;
+        color: #1e293b;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
 
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
-        }
+      /* Navigation Premium */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: saturate(180%) blur(20px);
+        z-index: 9999;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-        .nav-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 24px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+      }
 
-        .logo {
-            font-size: 1.75em;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-        }
+      .nav-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 24px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .nav-links {
-            display: flex;
-            gap: 45px;
-            list-style: none;
-            align-items: center;
-        }
+      .logo {
+        font-size: 1.75em;
+        font-weight: 900;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+      }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #334155;
-            font-weight: 600;
-            font-size: 0.95em;
-            transition: all 0.3s;
-            position: relative;
-        }
+      .nav-links {
+        display: flex;
+        gap: 45px;
+        list-style: none;
+        align-items: center;
+      }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
+      .nav-links a {
+        text-decoration: none;
+        color: #334155;
+        font-weight: 600;
+        font-size: 0.95em;
+        transition: all 0.3s;
+        position: relative;
+      }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s;
+      }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
 
-        .nav-cta {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white !important;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
-        }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
 
-        .nav-cta::after {
-            display: none;
-        }
+      .nav-cta {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-light)
+        );
+        color: white !important;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-weight: 700;
+        box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
+      }
 
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4);
-            color: white !important;
-        }
+      .nav-cta::after {
+        display: none;
+      }
 
-        /* Hero Ultra Premium */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #0052cc 100%);
-            overflow: hidden;
-            padding-top: 80px;
-        }
+      .nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4);
+        color: white !important;
+      }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(61, 127, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(0, 82, 204, 0.1) 0%, transparent 70%);
-            animation: gradientShift 15s ease infinite;
-        }
+      /* Hero Ultra Premium */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(
+          135deg,
+          #0a1628 0%,
+          #1e3a5f 50%,
+          #0052cc 100%
+        );
+        overflow: hidden;
+        padding-top: 80px;
+      }
 
-        @keyframes gradientShift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-10px, 10px) scale(1.05); }
-        }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(0, 212, 255, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(61, 127, 255, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(0, 82, 204, 0.1) 0%,
+            transparent 70%
+          );
+        animation: gradientShift 15s ease infinite;
+      }
 
-        .hero-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
+      @keyframes gradientShift {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
         }
+        50% {
+          transform: translate(-10px, 10px) scale(1.05);
+        }
+      }
 
+      .hero-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 60px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .hero-text h1 {
+        font-size: 5.5em;
+        color: white;
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -2px;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-text h1 .highlight {
+        background: linear-gradient(135deg, #00d4ff, #3d7fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5em;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+        margin-bottom: 50px;
+        line-height: 1.6;
+        animation: fadeInUp 1s ease 0.2s backwards;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        animation: fadeInUp 1s ease 0.4s backwards;
+      }
+
+      .btn-primary {
+        background: white;
+        color: var(--primary);
+        padding: 20px 45px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1.1em;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        padding: 20px 45px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1em;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+        transform: translateY(-4px);
+      }
+
+      .hero-features {
+        display: flex;
+        gap: 40px;
+        margin-top: 60px;
+        animation: fadeInUp 1s ease 0.6s backwards;
+      }
+
+      .hero-feature {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: white;
+      }
+
+      .hero-feature-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-feature-text {
+        font-weight: 600;
+        font-size: 1.05em;
+      }
+
+      .hero-visual {
+        position: relative;
+        animation: fadeInRight 1s ease 0.4s backwards;
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .hero-cards {
+        position: relative;
+      }
+
+      .floating-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        padding: 40px;
+        color: white;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .floating-card:nth-child(2) {
+        margin-top: 40px;
+        margin-left: 40px;
+        animation-delay: 1s;
+      }
+
+      .card-stat {
+        font-size: 3em;
+        font-weight: 900;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #fff, var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .card-label {
+        font-size: 1.1em;
+        opacity: 0.9;
+        font-weight: 600;
+      }
+
+      /* Trust Bar */
+      .trust-bar {
+        background: white;
+        padding: 60px 60px;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .trust-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+      }
+
+      .trust-item {
+        text-align: center;
+      }
+
+      .trust-number {
+        font-size: 4em;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        line-height: 1;
+      }
+
+      .trust-label {
+        font-size: 1.15em;
+        color: var(--gray);
+        font-weight: 600;
+      }
+
+      /* Sections */
+      section {
+        padding: 140px 60px;
+      }
+
+      section.alt-bg {
+        background: var(--light-bg);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto 80px;
+      }
+
+      .section-label {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 82, 204, 0.1),
+          rgba(0, 212, 255, 0.1)
+        );
+        color: var(--primary);
+        padding: 10px 24px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9em;
+        letter-spacing: 0.5px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: 3.8em;
+        font-weight: 900;
+        color: var(--dark);
+        margin-bottom: 25px;
+        letter-spacing: -1.5px;
+        line-height: 1.1;
+      }
+
+      .section-subtitle {
+        font-size: 1.4em;
+        color: var(--gray);
+        line-height: 1.6;
+      }
+
+      /* About Section Premium */
+      .about-grid {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: center;
+      }
+
+      .about-text {
+        font-size: 1.2em;
+        line-height: 1.9;
+        color: #475569;
+      }
+
+      .about-text p {
+        margin-bottom: 30px;
+      }
+
+      .about-text strong {
+        color: var(--dark);
+        font-weight: 700;
+      }
+
+      .about-highlight {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        padding: 70px;
+        border-radius: 30px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 82, 204, 0.4);
+      }
+
+      .about-highlight::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .about-highlight-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-highlight h3 {
+        font-size: 2.2em;
+        margin-bottom: 25px;
+        font-weight: 800;
+      }
+
+      .about-highlight p {
+        font-size: 1.2em;
+        line-height: 1.8;
+        opacity: 0.95;
+      }
+
+      .about-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .metric-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .metric-value {
+        font-size: 2.5em;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+
+      .metric-label {
+        font-size: 0.95em;
+        opacity: 0.9;
+      }
+
+      /* Services Ultra Premium */
+      .services-container {
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+
+      .service-card {
+        background: white;
+        padding: 60px;
+        border-radius: 30px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 30px 80px rgba(0, 82, 204, 0.15);
+        border-color: rgba(0, 82, 204, 0.2);
+      }
+
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .service-header {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 30px;
+      }
+
+      .service-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 82, 204, 0.1),
+          rgba(0, 212, 255, 0.1)
+        );
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5em;
+        flex-shrink: 0;
+      }
+
+      .service-card h3 {
+        font-size: 1.8em;
+        color: var(--dark);
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .service-card p {
+        font-size: 1.15em;
+        color: var(--gray);
+        line-height: 1.8;
+      }
+
+      .service-features {
+        list-style: none;
+        margin-top: 30px;
+      }
+
+      .service-features li {
+        padding: 12px 0;
+        color: #475569;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .service-features li::before {
+        content: "✓";
+        color: var(--primary);
+        font-weight: 900;
+        font-size: 1.2em;
+      }
+
+      /* Benefits Premium */
+      .benefits-grid {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+      }
+
+      .benefit-card {
+        text-align: center;
+        padding: 50px 35px;
+        background: white;
+        border-radius: 24px;
+        transition: all 0.4s;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        font-size: 2.8em;
+        color: white;
+        box-shadow: 0 15px 40px rgba(0, 82, 204, 0.35);
+      }
+
+      .benefit-card h3 {
+        font-size: 1.5em;
+        color: var(--dark);
+        margin-bottom: 18px;
+        font-weight: 800;
+      }
+
+      .benefit-card p {
+        color: var(--gray);
+        line-height: 1.7;
+        font-size: 1.05em;
+      }
+
+      /* Clients Section */
+      .clients-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .clients-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 35px;
+      }
+
+      .client-card {
+        background: white;
+        padding: 60px 40px;
+        border-radius: 24px;
+        text-align: center;
+        position: relative;
+        transition: all 0.4s;
+        border: 2px solid #e2e8f0;
+      }
+
+      .client-card::before {
+        content: "✓";
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1.2em;
+      }
+
+      .client-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(0, 82, 204, 0.15);
+        border-color: var(--primary);
+      }
+
+      .client-icon {
+        font-size: 3em;
+        margin-bottom: 25px;
+      }
+
+      .client-card h3 {
+        font-size: 1.4em;
+        color: var(--dark);
+        font-weight: 800;
+      }
+
+      /* CTA Section Ultime */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          #0a1628 0%,
+          #1e3a5f 50%,
+          var(--primary) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        padding: 160px 60px;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(
+            circle at 30% 40%,
+            rgba(0, 212, 255, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 60%,
+            rgba(61, 127, 255, 0.25) 0%,
+            transparent 50%
+          );
+        animation: ctaPulse 12s ease infinite;
+      }
+
+      @keyframes ctaPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        color: white;
+        font-size: 4.2em;
+        margin-bottom: 30px;
+      }
+
+      .cta-section p {
+        font-size: 1.5em;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 60px;
+        line-height: 1.6;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 25px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-btn-primary {
+        background: white;
+        color: var(--primary);
+        padding: 24px 55px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.2em;
+        transition: all 0.4s;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .cta-btn-primary:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+      }
+
+      .cta-btn-secondary {
+        background: transparent;
+        color: white;
+        padding: 24px 55px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1.2em;
+        border: 3px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s;
+      }
+
+      .cta-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: white;
+        transform: translateY(-5px);
+      }
+
+      /* Contact Section Premium */
+      .contact-section {
+        padding: 140px 60px;
+        background: white;
+      }
+
+      .contact-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, var(--light-bg), white);
+        padding: 90px 80px;
+        border-radius: 40px;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      .contact-container h3 {
+        font-size: 2.2em;
+        color: var(--dark);
+        margin-bottom: 20px;
+        font-weight: 800;
+      }
+
+      .contact-email-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        padding: 24px 55px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.3em;
+        margin: 40px 0;
+        transition: all 0.4s;
+        box-shadow: 0 15px 50px rgba(0, 82, 204, 0.4);
+      }
+
+      .contact-email-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 70px rgba(0, 82, 204, 0.5);
+      }
+
+      .contact-info {
+        color: var(--gray);
+        font-size: 1.2em;
+        line-height: 1.8;
+        margin-top: 30px;
+      }
+
+      /* Footer Premium */
+      footer {
+        background: var(--dark);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 80px 60px 40px;
+      }
+
+      .footer-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+
+      .footer-brand h3 {
+        font-size: 2em;
+        background: linear-gradient(135deg, white, var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        font-weight: 900;
+      }
+
+      .footer-brand p {
+        line-height: 1.8;
+        opacity: 0.8;
+      }
+
+      .footer-section h4 {
+        color: white;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-bottom {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        opacity: 0.7;
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
         .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 60px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 5.5em;
-            color: white;
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-text h1 .highlight {
-            background: linear-gradient(135deg, #00d4ff, #3d7fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5em;
-            color: rgba(255,255,255,0.9);
-            font-weight: 400;
-            margin-bottom: 50px;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-            padding: 20px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.1em;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 20px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1em;
-            border: 2px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
-            transform: translateY(-4px);
-        }
-
-        .hero-features {
-            display: flex;
-            gap: 40px;
-            margin-top: 60px;
-            animation: fadeInUp 1s ease 0.6s backwards;
-        }
-
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: white;
-        }
-
-        .hero-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .hero-feature-text {
-            font-weight: 600;
-            font-size: 1.05em;
+          grid-template-columns: 1fr;
+          gap: 60px;
         }
 
         .hero-visual {
-            position: relative;
-            animation: fadeInRight 1s ease 0.4s backwards;
+          display: none;
         }
 
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-cards {
-            position: relative;
-        }
-
-        .floating-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 24px;
-            padding: 40px;
-            color: white;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .floating-card:nth-child(2) {
-            margin-top: 40px;
-            margin-left: 40px;
-            animation-delay: 1s;
-        }
-
-        .card-stat {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card-label {
-            font-size: 1.1em;
-            opacity: 0.9;
-            font-weight: 600;
-        }
-
-        /* Trust Bar */
-        .trust-bar {
-            background: white;
-            padding: 60px 60px;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.08);
-        }
-
-        .trust-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 60px;
-        }
-
-        .trust-item {
-            text-align: center;
-        }
-
-        .trust-number {
-            font-size: 4em;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            line-height: 1;
-        }
-
-        .trust-label {
-            font-size: 1.15em;
-            color: var(--gray);
-            font-weight: 600;
-        }
-
-        /* Sections */
-        section {
-            padding: 140px 60px;
-        }
-
-        section.alt-bg {
-            background: var(--light-bg);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 80px;
-        }
-
-        .section-label {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(0,82,204,0.1), rgba(0,212,255,0.1));
-            color: var(--primary);
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9em;
-            letter-spacing: 0.5px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: 3.8em;
-            font-weight: 900;
-            color: var(--dark);
-            margin-bottom: 25px;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-
-        .section-subtitle {
-            font-size: 1.4em;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        /* About Section Premium */
         .about-grid {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.2em;
-            line-height: 1.9;
-            color: #475569;
-        }
-
-        .about-text p {
-            margin-bottom: 30px;
-        }
-
-        .about-text strong {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .about-highlight {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 70px;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 82, 204, 0.4);
-        }
-
-        .about-highlight::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .about-highlight-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-highlight h3 {
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            font-weight: 800;
-        }
-
-        .about-highlight p {
-            font-size: 1.2em;
-            line-height: 1.8;
-            opacity: 0.95;
-        }
-
-        .about-metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .metric-item {
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .metric-value {
-            font-size: 2.5em;
-            font-weight: 900;
-            margin-bottom: 8px;
-        }
-
-        .metric-label {
-            font-size: 0.95em;
-            opacity: 0.9;
-        }
-
-        /* Services Ultra Premium */
-        .services-container {
-            max-width: 1600px;
-            margin: 0 auto;
+          grid-template-columns: 1fr;
+          gap: 60px;
         }
 
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+          grid-template-columns: 1fr;
         }
 
-        .service-card {
-            background: white;
-            padding: 60px;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0,0,0,0.06);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 80px rgba(0,82,204,0.15);
-            border-color: rgba(0,82,204,0.2);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-header {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .service-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, rgba(0,82,204,0.1), rgba(0,212,255,0.1));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            flex-shrink: 0;
-        }
-
-        .service-card h3 {
-            font-size: 1.8em;
-            color: var(--dark);
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .service-card p {
-            font-size: 1.15em;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .service-features li {
-            padding: 12px 0;
-            color: #475569;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: 900;
-            font-size: 1.2em;
-        }
-
-        /* Benefits Premium */
-        .benefits-grid {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-        }
-
-        .benefit-card {
-            text-align: center;
-            padding: 50px 35px;
-            background: white;
-            border-radius: 24px;
-            transition: all 0.4s;
-            border: 1px solid rgba(0,0,0,0.06);
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
-        }
-
-        .benefit-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            font-size: 2.8em;
-            color: white;
-            box-shadow: 0 15px 40px rgba(0, 82, 204, 0.35);
-        }
-
-        .benefit-card h3 {
-            font-size: 1.5em;
-            color: var(--dark);
-            margin-bottom: 18px;
-            font-weight: 800;
-        }
-
-        .benefit-card p {
-            color: var(--gray);
-            line-height: 1.7;
-            font-size: 1.05em;
-        }
-
-        /* Clients Section */
-        .clients-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        .benefits-grid,
         .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 35px;
-        }
-
-        .client-card {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 24px;
-            text-align: center;
-            position: relative;
-            transition: all 0.4s;
-            border: 2px solid #e2e8f0;
-        }
-
-        .client-card::before {
-            content: '✓';
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.2em;
-        }
-
-        .client-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 82, 204, 0.15);
-            border-color: var(--primary);
-        }
-
-        .client-icon {
-            font-size: 3em;
-            margin-bottom: 25px;
-        }
-
-        .client-card h3 {
-            font-size: 1.4em;
-            color: var(--dark);
-            font-weight: 800;
-        }
-
-        /* CTA Section Ultime */
-        .cta-section {
-            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, var(--primary) 100%);
-            position: relative;
-            overflow: hidden;
-            padding: 160px 60px;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 40%, rgba(0, 212, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(61, 127, 255, 0.25) 0%, transparent 50%);
-            animation: ctaPulse 12s ease infinite;
-        }
-
-        @keyframes ctaPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            color: white;
-            font-size: 4.2em;
-            margin-bottom: 30px;
-        }
-
-        .cta-section p {
-            font-size: 1.5em;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 60px;
-            line-height: 1.6;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn-primary {
-            background: white;
-            color: var(--primary);
-            padding: 24px 55px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.2em;
-            transition: all 0.4s;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .cta-btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
-        }
-
-        .cta-btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 24px 55px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.2em;
-            border: 3px solid rgba(255,255,255,0.4);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s;
-        }
-
-        .cta-btn-secondary:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: white;
-            transform: translateY(-5px);
-        }
-
-        /* Contact Section Premium */
-        .contact-section {
-            padding: 140px 60px;
-            background: white;
-        }
-
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, var(--light-bg), white);
-            padding: 90px 80px;
-            border-radius: 40px;
-            box-shadow: 0 30px 90px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        .contact-container h3 {
-            font-size: 2.2em;
-            color: var(--dark);
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .contact-email-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 24px 55px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.3em;
-            margin: 40px 0;
-            transition: all 0.4s;
-            box-shadow: 0 15px 50px rgba(0, 82, 204, 0.4);
-        }
-
-        .contact-email-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0, 82, 204, 0.5);
-        }
-
-        .contact-info {
-            color: var(--gray);
-            font-size: 1.2em;
-            line-height: 1.8;
-            margin-top: 30px;
-        }
-
-        /* Footer Premium */
-        footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.8);
-            padding: 80px 60px 40px;
+          grid-template-columns: repeat(2, 1fr);
         }
 
         .footer-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
         }
 
-        .footer-brand h3 {
-            font-size: 2em;
-            background: linear-gradient(135deg, white, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            font-weight: 900;
+        .hero-text h1 {
+          font-size: 3em;
         }
 
-        .footer-brand p {
-            line-height: 1.8;
-            opacity: 0.8;
+        h2 {
+          font-size: 2.5em;
         }
 
-        .footer-section h4 {
-            color: white;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .trust-content {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        .footer-links {
-            list-style: none;
+        .benefits-grid,
+        .clients-grid {
+          grid-template-columns: 1fr;
         }
 
-        .footer-links li {
-            margin-bottom: 12px;
+        section {
+          padding: 80px 30px;
         }
 
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: all 0.3s;
+        .nav-content,
+        .hero-content {
+          padding: 0 30px;
         }
+      }
 
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            opacity: 0.7;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .benefits-grid,
-            .clients-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-text h1 {
-                font-size: 3em;
-            }
-
-            h2 {
-                font-size: 2.5em;
-            }
-
-            .trust-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .benefits-grid,
-            .clients-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 80px 30px;
-            }
-
-            .nav-content,
-            .hero-content {
-                padding: 0 30px;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="nav">
-        <div class="nav-content">
-            <div class="logo">TrueCare Supply</div>
-            <ul class="nav-links">
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Avantages</a></li>
-                <li><a href="#clients">Clients</a></li>
-                <li><a href="#contact" class="nav-cta">Contactez-nous</a></li>
-            </ul>
-        </div>
+      <div class="nav-content">
+        <div class="logo">TrueCare Supply</div>
+        <ul class="nav-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why-us">Avantages</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#contact" class="nav-cta">Contactez-nous</a></li>
+        </ul>
+      </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-grid"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>L'excellence <span class="highlight">médicale</span> commence ici</h1>
-                <p class="hero-subtitle">Le partenaire stratégique n°1 pour l'approvisionnement médical au Québec. Zéro rupture, livraison garantie, excellence absolue.</p>
-                
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">
-                        Obtenir une soumission
-                        <span>→</span>
-                    </a>
-                    <a href="#services" class="btn-secondary">Explorer nos services</a>
-                </div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            L'excellence <span class="highlight">médicale</span> commence ici
+          </h1>
+          <p class="hero-subtitle">
+            Le partenaire stratégique n°1 pour l'approvisionnement médical au
+            Québec. Zéro rupture, livraison garantie, excellence absolue.
+          </p>
 
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">⚡</div>
-                        <div class="hero-feature-text">Livraison 24h</div>
-                    </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">✓</div>
-                        <div class="hero-feature-text">Stock garanti</div>
-                    </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">🏆</div>
-                        <div class="hero-feature-text">Qualité certifiée</div>
-                    </div>
-                </div>
-            </div>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">
+              Obtenir une soumission
+              <span>→</span>
+            </a>
+            <a href="#services" class="btn-secondary">Explorer nos services</a>
+          </div>
 
-            <div class="hero-visual">
-                <div class="hero-cards">
-                    <div class="floating-card">
-                        <div class="card-stat">99.9%</div>
-                        <div class="card-label">Taux de disponibilité</div>
-                    </div>
-                    <div class="floating-card">
-                        <div class="card-stat">24h</div>
-                        <div class="card-label">Livraison express</div>
-                    </div>
-                </div>
+          <div class="hero-features">
+            <div class="hero-feature">
+              <div class="hero-feature-icon">⚡</div>
+              <div class="hero-feature-text">Livraison 24h</div>
             </div>
+            <div class="hero-feature">
+              <div class="hero-feature-icon">✓</div>
+              <div class="hero-feature-text">Stock garanti</div>
+            </div>
+            <div class="hero-feature">
+              <div class="hero-feature-icon">🏆</div>
+              <div class="hero-feature-text">Qualité certifiée</div>
+            </div>
+          </div>
         </div>
+
+        <div class="hero-visual">
+          <div class="hero-cards">
+            <div class="floating-card">
+              <div class="card-stat">99.9%</div>
+              <div class="card-label">Taux de disponibilité</div>
+            </div>
+            <div class="floating-card">
+              <div class="card-stat">24h</div>
+              <div class="card-label">Livraison express</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="trust-bar">
-        <div class="trust-content">
-            <div class="trust-item">
-                <div class="trust-number">500+</div>
-                <div class="trust-label">Établissements partenaires</div>
-            </div>
-            <div class="trust-item">
-                <div class="trust-number">24/7</div>
-                <div class="trust-label">Service disponible</div>
-            </div>
-            <div class="trust-item">
-                <div class="trust-number">100%</div>
-                <div class="trust-label">Produits certifiés</div>
-            </div>
-            <div class="trust-item">
-                <div class="trust-number">15+</div>
-                <div class="trust-label">Années d'expertise</div>
-            </div>
+      <div class="trust-content">
+        <div class="trust-item">
+          <div class="trust-number">500+</div>
+          <div class="trust-label">Établissements partenaires</div>
         </div>
+        <div class="trust-item">
+          <div class="trust-number">24/7</div>
+          <div class="trust-label">Service disponible</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-number">100%</div>
+          <div class="trust-label">Produits certifiés</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-number">15+</div>
+          <div class="trust-label">Années d'expertise</div>
+        </div>
+      </div>
     </div>
 
     <section id="about">
-        <div class="section-header">
-            <span class="section-label">Qui nous sommes</span>
-            <h2>Le standard d'excellence en fournitures médicales</h2>
-            <p class="section-subtitle">Une expertise québécoise inégalée au service de votre mission de soins</p>
+      <div class="section-header">
+        <span class="section-label">Qui nous sommes</span>
+        <h2>Le standard d'excellence en fournitures médicales</h2>
+        <p class="section-subtitle">
+          Une expertise québécoise inégalée au service de votre mission de soins
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            <strong>TrueCare Supply n'est pas un simple fournisseur.</strong>
+            Nous sommes votre partenaire stratégique pour garantir la continuité
+            absolue de vos opérations médicales, en toutes circonstances.
+          </p>
+
+          <p>
+            Notre expertise reconnue en gestion proactive des pénuries et notre
+            réseau d'approvisionnement ultra-sécurisé nous permettent d'assurer
+            une disponibilité constante des consommables essentiels, même dans
+            les situations les plus critiques.
+          </p>
+
+          <p>
+            Parce que vos patients comptent sur vous chaque jour, nous avons
+            bâti un système d'approvisionnement redondant, des partenariats
+            mondiaux stratégiques et une logistique d'exception pour que
+            <strong>vous ne manquiez jamais de rien</strong>.
+          </p>
         </div>
 
-        <div class="about-grid">
-            <div class="about-text">
-                <p><strong>TrueCare Supply n'est pas un simple fournisseur.</strong> Nous sommes votre partenaire stratégique pour garantir la continuité absolue de vos opérations médicales, en toutes circonstances.</p>
-                
-                <p>Notre expertise reconnue en gestion proactive des pénuries et notre réseau d'approvisionnement ultra-sécurisé nous permettent d'assurer une disponibilité constante des consommables essentiels, même dans les situations les plus critiques.</p>
-                
-                <p>Parce que vos patients comptent sur vous chaque jour, nous avons bâti un système d'approvisionnement redondant, des partenariats mondiaux stratégiques et une logistique d'exception pour que <strong>vous ne manquiez jamais de rien</strong>.</p>
-            </div>
+        <div class="about-highlight">
+          <div class="about-highlight-content">
+            <h3>Notre promesse inébranlable</h3>
+            <p>
+              Zéro rupture de stock. Livraison garantie sous 24h. Qualité
+              pharmaceutique irréprochable. C'est notre engagement quotidien
+              envers vous.
+            </p>
 
-            <div class="about-highlight">
-                <div class="about-highlight-content">
-                    <h3>Notre promesse inébranlable</h3>
-                    <p>Zéro rupture de stock. Livraison garantie sous 24h. Qualité pharmaceutique irréprochable. C'est notre engagement quotidien envers vous.</p>
-                    
-                    <div class="about-metrics">
-                        <div class="metric-item">
-                            <div class="metric-value">99.9%</div>
-                            <div class="metric-label">Disponibilité produits</div>
-                        </div>
-                        <div class="metric-item">
-                            <div class="metric-value">< 24h</div>
-                            <div class="metric-label">Délai livraison moyen</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="about-metrics">
+              <div class="metric-item">
+                <div class="metric-value">99.9%</div>
+                <div class="metric-label">Disponibilité produits</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-value">< 24h</div>
+                <div class="metric-label">Délai livraison moyen</div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="services" class="alt-bg">
-        <div class="section-header">
-            <span class="section-label">Nos solutions</span>
-            <h2>Services premium tout-en-un</h2>
-            <p class="section-subtitle">Des solutions complètes et intégrées pour chaque aspect de votre approvisionnement médical</p>
-        </div>
+      <div class="section-header">
+        <span class="section-label">Nos solutions</span>
+        <h2>Services premium tout-en-un</h2>
+        <p class="section-subtitle">
+          Des solutions complètes et intégrées pour chaque aspect de votre
+          approvisionnement médical
+        </p>
+      </div>
 
-        <div class="services-container">
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">🏥</div>
-                        <h3>Catalogue médical exhaustif</h3>
-                    </div>
-                    <p>Accès immédiat à l'ensemble des consommables médicaux essentiels avec stock permanent garanti.</p>
-                    <ul class="service-features">
-                        <li>Gants médicaux toutes catégories</li>
-                        <li>Masques chirurgicaux & N95</li>
-                        <li>Blouses stériles certifiées</li>
-                        <li>Seringues et matériel d'injection</li>
-                        <li>Consommables spécialisés</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">⚡</div>
-                        <h3>Livraison express 24/7</h3>
-                    </div>
-                    <p>Service de transport prioritaire ultra-rapide partout au Québec, même les urgences.</p>
-                    <ul class="service-features">
-                        <li>Livraison d'urgence < 4 heures</li>
-                        <li>Service standard 24 heures</li>
-                        <li>Tracking en temps réel</li>
-                        <li>Équipe logistique dédiée</li>
-                        <li>Disponible 365 jours/an</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">🎯</div>
-                        <h3>Gestion intelligente des pénuries</h3>
-                    </div>
-                    <p>Système proactif d'anticipation et solutions alternatives pour garantir votre continuité.</p>
-                    <ul class="service-features">
-                        <li>Surveillance marché en temps réel</li>
-                        <li>Alertes préventives automatiques</li>
-                        <li>Solutions de substitution certifiées</li>
-                        <li>Stock de sécurité personnalisé</li>
-                        <li>Planification stratégique</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">💎</div>
-                        <h3>Service concierge dédié</h3>
-                    </div>
-                    <p>Accompagnement personnalisé par une équipe d'experts dédiés à votre réussite.</p>
-                    <ul class="service-features">
-                        <li>Gestionnaire de compte attitré</li>
-                        <li>Commandes prioritaires VIP</li>
-                        <li>Conseil d'optimisation stock</li>
-                        <li>Support technique 24/7</li>
-                        <li>Tarification sur mesure</li>
-                    </ul>
-                </div>
+      <div class="services-container">
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon">🏥</div>
+              <h3>Catalogue médical exhaustif</h3>
             </div>
+            <p>
+              Accès immédiat à l'ensemble des consommables médicaux essentiels
+              avec stock permanent garanti.
+            </p>
+            <ul class="service-features">
+              <li>Gants médicaux toutes catégories</li>
+              <li>Masques chirurgicaux & N95</li>
+              <li>Blouses stériles certifiées</li>
+              <li>Seringues et matériel d'injection</li>
+              <li>Consommables spécialisés</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon">⚡</div>
+              <h3>Livraison express 24/7</h3>
+            </div>
+            <p>
+              Service de transport prioritaire ultra-rapide partout au Québec,
+              même les urgences.
+            </p>
+            <ul class="service-features">
+              <li>Livraison d'urgence < 4 heures</li>
+              <li>Service standard 24 heures</li>
+              <li>Tracking en temps réel</li>
+              <li>Équipe logistique dédiée</li>
+              <li>Disponible 365 jours/an</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon">🎯</div>
+              <h3>Gestion intelligente des pénuries</h3>
+            </div>
+            <p>
+              Système proactif d'anticipation et solutions alternatives pour
+              garantir votre continuité.
+            </p>
+            <ul class="service-features">
+              <li>Surveillance marché en temps réel</li>
+              <li>Alertes préventives automatiques</li>
+              <li>Solutions de substitution certifiées</li>
+              <li>Stock de sécurité personnalisé</li>
+              <li>Planification stratégique</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon">💎</div>
+              <h3>Service concierge dédié</h3>
+            </div>
+            <p>
+              Accompagnement personnalisé par une équipe d'experts dédiés à
+              votre réussite.
+            </p>
+            <ul class="service-features">
+              <li>Gestionnaire de compte attitré</li>
+              <li>Commandes prioritaires VIP</li>
+              <li>Conseil d'optimisation stock</li>
+              <li>Support technique 24/7</li>
+              <li>Tarification sur mesure</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="why-us">
-        <div class="section-header">
-            <span class="section-label">Nos avantages</span>
-            <h2>Pourquoi TrueCare Supply</h2>
-            <p class="section-subtitle">L'excellence opérationnelle qui transforme votre approvisionnement médical</p>
+      <div class="section-header">
+        <span class="section-label">Nos avantages</span>
+        <h2>Pourquoi TrueCare Supply</h2>
+        <p class="section-subtitle">
+          L'excellence opérationnelle qui transforme votre approvisionnement
+          médical
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <h3>Fiabilité absolue</h3>
+          <p>
+            Stock sécurisé multi-sources et chaîne d'approvisionnement
+            redondante. Garantie zéro rupture ou remboursement.
+          </p>
         </div>
 
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🛡️</div>
-                <h3>Fiabilité absolue</h3>
-                <p>Stock sécurisé multi-sources et chaîne d'approvisionnement redondante. Garantie zéro rupture ou remboursement.</p>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-icon">⚡</div>
-                <h3>Rapidité inégalée</h3>
-                <p>Livraison express garantie en moins de 24h partout au Québec. Service d'urgence < 4h disponible.</p>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-icon">✓</div>
-                <h3>Qualité premium</h3>
-                <p>100% des produits certifiés Santé Canada. Conformité ISO et traçabilité complète garanties.</p>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-icon">💼</div>
-                <h3>Service VIP</h3>
-                <p>Gestionnaire dédié, commandes prioritaires et tarification optimisée selon vos volumes.</p>
-            </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <h3>Rapidité inégalée</h3>
+          <p>
+            Livraison express garantie en moins de 24h partout au Québec.
+            Service d'urgence < 4h disponible.
+          </p>
         </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">✓</div>
+          <h3>Qualité premium</h3>
+          <p>
+            100% des produits certifiés Santé Canada. Conformité ISO et
+            traçabilité complète garanties.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">💼</div>
+          <h3>Service VIP</h3>
+          <p>
+            Gestionnaire dédié, commandes prioritaires et tarification optimisée
+            selon vos volumes.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="clients" class="alt-bg">
-        <div class="section-header">
-            <span class="section-label">Nos partenaires</span>
-            <h2>Ils nous font confiance</h2>
-            <p class="section-subtitle">Plus de 500 établissements de santé comptent sur notre expertise quotidiennement</p>
-        </div>
+      <div class="section-header">
+        <span class="section-label">Nos partenaires</span>
+        <h2>Ils nous font confiance</h2>
+        <p class="section-subtitle">
+          Plus de 500 établissements de santé comptent sur notre expertise
+          quotidiennement
+        </p>
+      </div>
 
-        <div class="clients-container">
-            <div class="clients-grid">
-                <div class="client-card">
-                    <div class="client-icon">🏥</div>
-                    <h3>Cliniques privées</h3>
-                </div>
-                <div class="client-card">
-                    <div class="client-icon">🦷</div>
-                    <h3>Cabinets dentaires</h3>
-                </div>
-                <div class="client-card">
-                    <div class="client-icon">⚕️</div>
-                    <h3>Centres médicaux</h3>
-                </div>
-                <div class="client-card">
-                    <div class="client-icon">🏠</div>
-                    <h3>Soins à domicile</h3>
-                </div>
-            </div>
+      <div class="clients-container">
+        <div class="clients-grid">
+          <div class="client-card">
+            <div class="client-icon">🏥</div>
+            <h3>Cliniques privées</h3>
+          </div>
+          <div class="client-card">
+            <div class="client-icon">🦷</div>
+            <h3>Cabinets dentaires</h3>
+          </div>
+          <div class="client-card">
+            <div class="client-icon">⚕️</div>
+            <h3>Centres médicaux</h3>
+          </div>
+          <div class="client-card">
+            <div class="client-icon">🏠</div>
+            <h3>Soins à domicile</h3>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="cta-section">
-        <div class="cta-content">
-            <h2>Prêt à garantir votre excellence opérationnelle ?</h2>
-            <p>Rejoignez l'élite des établissements de santé qui ont choisi la tranquillité d'esprit absolue avec TrueCare Supply</p>
-            
-            <div class="cta-buttons">
-                <a href="#contact" class="cta-btn-primary">
-                    Obtenir une soumission gratuite
-                    <span>→</span>
-                </a>
-                <a href="mailto:contact@truecaresupply.ca" class="cta-btn-secondary">Parler à un expert</a>
-            </div>
+      <div class="cta-content">
+        <h2>Prêt à garantir votre excellence opérationnelle ?</h2>
+        <p>
+          Rejoignez l'élite des établissements de santé qui ont choisi la
+          tranquillité d'esprit absolue avec TrueCare Supply
+        </p>
+
+        <div class="cta-buttons">
+          <a href="#contact" class="cta-btn-primary">
+            Obtenir une soumission gratuite
+            <span>→</span>
+          </a>
+          <a href="mailto:contact@truecaresupply.ca" class="cta-btn-secondary"
+            >Parler à un expert</a
+          >
         </div>
+      </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <div class="section-header">
-            <span class="section-label">Contact</span>
-            <h2>Parlons de vos besoins</h2>
-            <p class="section-subtitle">Notre équipe d'experts est prête à créer votre solution sur mesure</p>
-        </div>
+      <div class="section-header">
+        <span class="section-label">Contact</span>
+        <h2>Parlons de vos besoins</h2>
+        <p class="section-subtitle">
+          Notre équipe d'experts est prête à créer votre solution sur mesure
+        </p>
+      </div>
 
-        <div class="contact-container">
-            <h3>Démarrez votre partenariat dès aujourd'hui</h3>
-            <a href="mailto:contact@truecaresupply.ca" class="contact-email-btn">
-                📧 contact@truecaresupply.ca
-            </a>
-            <p class="contact-info">
-                Soumission gratuite • Sans engagement • Réponse sous 2 heures<br>
-                Notre équipe analyse vos besoins et vous propose une solution personnalisée
-            </p>
-        </div>
+      <div class="contact-container">
+        <h3>Démarrez votre partenariat dès aujourd'hui</h3>
+        <a href="mailto:contact@truecaresupply.ca" class="contact-email-btn">
+          📧 contact@truecaresupply.ca
+        </a>
+        <p class="contact-info">
+          Soumission gratuite • Sans engagement • Réponse sous 2 heures<br />
+          Notre équipe analyse vos besoins et vous propose une solution
+          personnalisée
+        </p>
+      </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>TrueCare Supply</h3>
-                <p>Le leader québécois en fournitures médicales. Excellence, fiabilité et innovation au service de votre pratique médicale.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#services">Fournitures médicales</a></li>
-                    <li><a href="#services">Livraison express</a></li>
-                    <li><a href="#services">Gestion pénuries</a></li>
-                    <li><a href="#services">Service concierge</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Entreprise</h4>
-                <ul class="footer-links">
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#why-us">Pourquoi nous</a></li>
-                    <li><a href="#clients">Nos clients</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <ul class="footer-links">
-                    <li><a href="mailto:contact@truecaresupply.ca">contact@truecaresupply.ca</a></li>
-                    <li>Service 24/7</li>
-                    <li>Partout au Québec</li>
-                </ul>
-            </div>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>TrueCare Supply</h3>
+          <p>
+            Le leader québécois en fournitures médicales. Excellence, fiabilité
+            et innovation au service de votre pratique médicale.
+          </p>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 TrueCare Supply. Tous droits réservés. | Leader en fournitures médicales au Québec</p>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Fournitures médicales</a></li>
+            <li><a href="#services">Livraison express</a></li>
+            <li><a href="#services">Gestion pénuries</a></li>
+            <li><a href="#services">Service concierge</a></li>
+          </ul>
         </div>
+
+        <div class="footer-section">
+          <h4>Entreprise</h4>
+          <ul class="footer-links">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#why-us">Pourquoi nous</a></li>
+            <li><a href="#clients">Nos clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="mailto:contact@truecaresupply.ca"
+                >contact@truecaresupply.ca</a
+              >
+            </li>
+            <li>Service 24/7</li>
+            <li>Partout au Québec</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 TrueCare Supply. Tous droits réservés. | Leader en
+          fournitures médicales au Québec
+        </p>
+      </div>
     </footer>
 
     <script>
-        // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+      // Navigation scroll effect
+      window.addEventListener("scroll", function () {
+        const nav = document.getElementById("nav");
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,147 @@
+.section {
+  padding: 140px 60px;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 80px;
+}
+
+.sectionLabel {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(0, 82, 204, 0.1), rgba(0, 212, 255, 0.1));
+  color: var(--primary);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.sectionHeader h2 {
+  font-size: 3.8em;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 25px;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+
+.sectionSubtitle {
+  font-size: 1.4em;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.aboutGrid {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.aboutText {
+  font-size: 1.2em;
+  line-height: 1.9;
+  color: #475569;
+}
+
+.aboutText p {
+  margin-bottom: 30px;
+}
+
+.aboutText strong {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.aboutHighlight {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 70px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 82, 204, 0.4);
+}
+
+.aboutHighlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.aboutHighlightContent {
+  position: relative;
+  z-index: 1;
+}
+
+.aboutHighlight h3 {
+  font-size: 2.2em;
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+.aboutHighlight p {
+  font-size: 1.2em;
+  line-height: 1.8;
+  opacity: 0.95;
+}
+
+.aboutMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.metricItem {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.metricValue {
+  font-size: 2.5em;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.metricLabel {
+  font-size: 0.95em;
+  opacity: 0.9;
+}
+
+@media (max-width: 1200px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 30px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2.5em;
+  }
+}
