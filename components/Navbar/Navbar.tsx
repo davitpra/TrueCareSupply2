@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./Navbar.module.css";
 
 // Throttle helper para optimizar el scroll listener
@@ -93,13 +94,13 @@ export default function Navbar() {
       aria-label="Navigation principale"
     >
       <div className={styles.navContent}>
-        <a
+        <Link
           href="/"
           className={styles.logo}
           aria-label="TrueCare Supply - Retour à l'accueil"
         >
           TrueCare Supply
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <ul className={styles.navLinks}>
