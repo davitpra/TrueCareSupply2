@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./Navbar.module.css";
 
 // Throttle helper para optimizar el scroll listener
@@ -93,19 +94,19 @@ export default function Navbar() {
       aria-label="Navigation principale"
     >
       <div className={styles.navContent}>
-        <a
+        <Link
           href="/"
           className={styles.logo}
           aria-label="TrueCare Supply - Retour à l'accueil"
         >
           TrueCare Supply
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <ul className={styles.navLinks}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className={
                   activeSection === link.href.substring(1) ? styles.active : ""
@@ -115,13 +116,13 @@ export default function Navbar() {
                 }
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li>
-            <a href="#contact" className={styles.navCta}>
+            <Link href="#contact" className={styles.navCta}>
               Contactez-nous
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -152,7 +153,7 @@ export default function Navbar() {
               className={styles.mobileNavItem}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <a
+              <Link
                 href={link.href}
                 onClick={handleLinkClick}
                 className={
@@ -163,20 +164,20 @@ export default function Navbar() {
                 }
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li
             className={styles.mobileNavItem}
             style={{ animationDelay: `${navLinks.length * 0.1}s` }}
           >
-            <a
+            <Link
               href="#contact"
               className={styles.navCta}
               onClick={handleLinkClick}
             >
               Contactez-nous
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
