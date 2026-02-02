@@ -221,11 +221,19 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 80px 30px;
+    padding: 80px 20px;
   }
 
   .sectionHeader h2 {
     font-size: 2.5em;
+  }
+
+  .sectionHeader {
+    margin-bottom: 50px;
+  }
+
+  .sectionSubtitle {
+    font-size: 1.25em;
   }
 
   /* Layout carousel para móvil */
@@ -233,9 +241,11 @@
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 20px;
-    padding: 10px;
-    margin: -10px;
+    gap: 16px;
+    padding: 10px 5px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--primary) rgba(0, 0, 0, 0.1);
@@ -256,19 +266,66 @@
   }
 
   .benefitCard {
-    min-width: 70%;
+    min-width: 90%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
+    padding: 45px 30px;
+  }
+
+  .benefitIcon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+  }
+
+  .iconSvg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .benefitCard h3 {
+    font-size: 1.5em;
+  }
+
+  .benefitCard p {
+    font-size: 1.05em;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 16px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2em;
+  }
+
+  .sectionSubtitle {
+    font-size: 1.15em;
+  }
+
+  .benefitCard {
+    min-width: 92%;
     padding: 40px 25px;
   }
 
   .benefitIcon {
     width: 80px;
     height: 80px;
+    margin-bottom: 20px;
   }
 
   .iconSvg {
     width: 36px;
     height: 36px;
+  }
+
+  .benefitCard h3 {
+    font-size: 1.35em;
+  }
+
+  .benefitCard p {
+    font-size: 1em;
   }
 }
