@@ -305,7 +305,7 @@
   }
 
   .serviceCard {
-    min-width: 90%;
+    min-width: 70%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
   }

@@ -256,13 +256,38 @@
     font-size: 2.5em;
   }
 
+  /* Layout carousel para móvil */
   .clientsGrid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px;
+    margin: -10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) rgba(0, 0, 0, 0.1);
+  }
+
+  .clientsGrid::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .clientsGrid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+
+  .clientsGrid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
   }
 
   .clientCard {
-    padding: 45px 35px;
+    min-width: 70%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    padding: 45px 25px;
   }
 
   .clientIcon {

@@ -228,13 +228,38 @@
     font-size: 2.5em;
   }
 
+  /* Layout carousel para móvil */
   .benefitsGrid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px;
+    margin: -10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) rgba(0, 0, 0, 0.1);
+  }
+
+  .benefitsGrid::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .benefitsGrid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+
+  .benefitsGrid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
   }
 
   .benefitCard {
-    padding: 40px 30px;
+    min-width: 70%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    padding: 40px 25px;
   }
 
   .benefitIcon {
