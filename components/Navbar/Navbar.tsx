@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "next/link"; // error de importación corregido
 import styles from "./Navbar.module.css";
 
 // Throttle helper para optimizar el scroll listener
