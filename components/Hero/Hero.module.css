@@ -253,6 +253,14 @@
   font-size: 1.05em;
 }
 
+.deliveryNote {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9em;
+  margin-top: 20px;
+  font-style: italic;
+  animation: fadeInUp 1s ease 0.8s backwards;
+}
+
 .heroVisual {
   position: relative;
   animation: fadeInRight 1s ease 0.4s backwards;

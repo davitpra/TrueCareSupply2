@@ -113,6 +113,10 @@ export default function Hero() {
               <div className={styles.heroFeatureText}>Qualité certifiée</div>
             </div>
           </div>
+
+          <p className={styles.deliveryNote}>
+            Délai de livraison maximum de 72 heures pour la plupart des commandes.
+          </p>
         </div>
 
         <div

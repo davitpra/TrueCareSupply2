@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Shield, Zap, CheckCircle2, Briefcase } from "lucide-react";
+import { Shield, Zap, CheckCircle2, Briefcase, Network } from "lucide-react";
 import styles from "./Benefits.module.css";
 
 const benefits = [
+  {
+    icon: Network,
+    title: "Réseau étendu de fournisseurs",
+    description:
+      "Accès privilégié à un vaste réseau de fournisseurs médicaux certifiés pour répondre à tous vos besoins.",
+  },
   {
     icon: Shield,
     title: "Fiabilité absolue",
