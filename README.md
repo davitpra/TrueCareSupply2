@@ -1,4 +1,4 @@
-# TrueCare Supply - Next.js Website
+# TrueCareSupply - Next.js Website
 
 Este proyecto es una aplicación web moderna construida con Next.js 15, TypeScript y CSS Modules.
 
@@ -80,33 +80,43 @@ npm start
 ## Componentes Principales
 
 ### Navbar
+
 Barra de navegación fija con efecto de scroll y enlaces de navegación.
 
 ### Hero
+
 Sección principal con título destacado, botones de CTA y tarjetas flotantes animadas.
 
 ### TrustBar
+
 Barra con estadísticas clave de la empresa.
 
 ### About
+
 Sección sobre la empresa con grid de información y métricas destacadas.
 
 ### Services
+
 Grid de servicios con tarjetas interactivas con hover effects.
 
 ### Benefits
+
 Tarjetas de beneficios con iconos y descripciones.
 
 ### Clients
+
 Grid de tipos de clientes atendidos.
 
 ### CTA
+
 Call-to-action con fondo gradiente y botones destacados.
 
 ### Contact
+
 Formulario de contacto con información de la empresa.
 
 ### Footer
+
 Pie de página con enlaces y información de contacto.
 
 ## Variables CSS Globales
@@ -124,6 +134,7 @@ El proyecto utiliza variables CSS para mantener consistencia en los colores:
 ## Soporte de Navegadores
 
 Este proyecto soporta los navegadores modernos más recientes:
+
 - Chrome
 - Firefox
 - Safari

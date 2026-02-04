@@ -1,13 +1,15 @@
-import styles from './CTA.module.css';
+import styles from "./CTA.module.css";
 
 export default function CTA() {
   return (
     <section className={styles.ctaSection} aria-labelledby="cta-heading">
       <div className={styles.ctaContent}>
-        <h2 id="cta-heading">Prêt à garantir votre excellence opérationnelle ?</h2>
+        <h2 id="cta-heading">
+          Prêt à garantir votre excellence opérationnelle ?
+        </h2>
         <p className={styles.ctaDescription}>
-          Rejoignez l&apos;élite des établissements de santé qui ont choisi la tranquillité
-          d&apos;esprit absolue avec TrueCare Supply
+          Rejoignez l&apos;élite des établissements de santé qui ont choisi la
+          tranquillité d&apos;esprit absolue avec TrueCareSupply
         </p>
 
         <div className={styles.ctaButtons}>
@@ -17,7 +19,9 @@ export default function CTA() {
             aria-label="Obtenir une soumission gratuite - Contactez-nous"
           >
             Obtenir une soumission gratuite
-            <span className={styles.arrow} aria-hidden="true">→</span>
+            <span className={styles.arrow} aria-hidden="true">
+              →
+            </span>
           </a>
           <a
             href="mailto:contact@truecaresupply.ca"

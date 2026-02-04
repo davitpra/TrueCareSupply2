@@ -97,9 +97,9 @@ export default function Navbar() {
         <Link
           href="/"
           className={styles.logo}
-          aria-label="TrueCare Supply - Retour à l'accueil"
+          aria-label="TrueCareSupply - Retour à l'accueil"
         >
-          TrueCare Supply
+          TrueCareSupply
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState, memo } from 'react';
-import styles from './TrustBar.module.css';
+import { useEffect, useRef, useState, memo } from "react";
+import styles from "./TrustBar.module.css";
 
 function TrustBar() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [counts, setCounts] = useState({
-    establishments: 0,
+    delivery: 0,
     availability: 0,
     certification: 0,
     experience: 0,
@@ -22,7 +22,7 @@ function TrustBar() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -40,7 +40,7 @@ function TrustBar() {
     const interval = duration / steps;
 
     const targets = {
-      establishments: 500,
+      delivery: 72,
       availability: 24,
       certification: 100,
       experience: 15,
@@ -53,7 +53,7 @@ function TrustBar() {
       const progress = currentStep / steps;
 
       setCounts({
-        establishments: Math.floor(targets.establishments * progress),
+        delivery: Math.floor(targets.delivery * progress),
         availability: Math.floor(targets.availability * progress),
         certification: Math.floor(targets.certification * progress),
         experience: Math.floor(targets.experience * progress),
@@ -79,48 +79,49 @@ function TrustBar() {
       setActiveSlide(currentSlide);
     };
 
-    scrollContainer.addEventListener('scroll', handleScroll);
-    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
   }, []);
 
   const trustItems = [
     {
-      count: counts.establishments,
-      suffix: '+',
-      label: 'Établissements partenaires',
-      ariaLabel: '500 établissements partenaires',
+      count: counts.delivery,
+      suffix: " max",
+      label: "Délai de livraison inférieur à 72 heures, sans garantie",
+      ariaLabel: "Délai de livraison inférieur à 72 heures, sans garantie.",
     },
     {
       count: counts.availability,
-      suffix: '/7',
-      label: 'Service disponible',
-      ariaLabel: 'Service disponible 24 heures sur 24, 7 jours sur 7',
+      suffix: "/7",
+      label: "Service disponible",
+      ariaLabel: "Service disponible 24 heures sur 24, 7 jours sur 7",
     },
     {
       count: counts.certification,
-      suffix: '%',
-      label: 'Produits certifiés',
-      ariaLabel: '100 pourcent de produits certifiés',
+      suffix: "%",
+      label: "Produits certifiés",
+      ariaLabel: "100 pourcent de produits certifiés",
     },
     {
       count: counts.experience,
-      suffix: '+',
-      label: 'Années d\'expertise',
-      ariaLabel: '15 années d\'expertise',
+      suffix: "+",
+      label: "Années d'expertise",
+      ariaLabel: "15 années d'expertise",
     },
   ];
 
   return (
     <section
       ref={sectionRef}
-      className={`${styles.trustBar} ${isVisible ? styles.fadeIn : ''}`}
+      className={`${styles.trustBar} ${isVisible ? styles.fadeIn : ""}`}
       aria-label="Nos chiffres clés"
     >
       <div ref={scrollRef} className={styles.trustContent}>
         {trustItems.map((item, index) => (
           <article key={index} className={styles.trustItem}>
             <div className={styles.trustNumber} aria-label={item.ariaLabel}>
-              {item.count}{item.suffix}
+              {item.count}
+              {item.suffix}
             </div>
             <div className={styles.trustLabel}>{item.label}</div>
           </article>
@@ -131,11 +132,11 @@ function TrustBar() {
         {trustItems.map((_, index) => (
           <button
             key={index}
-            className={`${styles.dot} ${activeSlide === index ? styles.dotActive : ''}`}
+            className={`${styles.dot} ${activeSlide === index ? styles.dotActive : ""}`}
             onClick={() => {
               scrollRef.current?.scrollTo({
                 left: index * scrollRef.current.offsetWidth,
-                behavior: 'smooth',
+                behavior: "smooth",
               });
             }}
             aria-label={`Ir a la diapositiva ${index + 1}`}

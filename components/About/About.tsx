@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import styles from './About.module.css';
+import { useEffect, useRef, useState } from "react";
+import styles from "./About.module.css";
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +14,7 @@ export default function About() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const currentSection = sectionRef.current;
@@ -34,7 +34,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className={`${styles.section} ${isVisible ? styles.visible : ''}`}
+      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
       role="region"
       aria-labelledby="about-heading"
     >
@@ -42,7 +42,9 @@ export default function About() {
         <span className={styles.sectionLabel}>
           <span className={styles.iconFlag}>🍁</span> Qui nous sommes
         </span>
-        <h2 id="about-heading">Le standard d&apos;excellence en fournitures médicales</h2>
+        <h2 id="about-heading">
+          Le standard d&apos;excellence en fournitures médicales
+        </h2>
         <p className={styles.sectionSubtitle}>
           Une expertise québécoise inégalée au service de votre mission de soins
         </p>
@@ -52,25 +54,32 @@ export default function About() {
         <div className={styles.aboutText}>
           <div className={styles.textBlock}>
             <p>
-              <strong>TrueCare Supply n&apos;est pas un simple fournisseur.</strong> Nous sommes votre
-              partenaire stratégique pour garantir la continuité absolue de vos opérations médicales,
-              en toutes circonstances.
+              <strong>
+                TrueCareSupply n&apos;est pas un simple fournisseur.
+              </strong>{" "}
+              Nous sommes votre partenaire stratégique pour garantir la
+              continuité absolue de vos opérations médicales, en toutes
+              circonstances.
             </p>
           </div>
 
           <div className={styles.textBlock}>
             <p>
-              Notre expertise reconnue en gestion proactive des pénuries et notre réseau
-              d&apos;approvisionnement ultra-sécurisé nous permettent d&apos;assurer une disponibilité constante
-              des consommables essentiels, même dans les situations les plus critiques.
+              Notre expertise reconnue en gestion proactive des pénuries et
+              notre réseau d&apos;approvisionnement ultra-sécurisé nous
+              permettent d&apos;assurer une disponibilité constante des
+              consommables essentiels, même dans les situations les plus
+              critiques.
             </p>
           </div>
 
           <div className={styles.textBlock}>
             <p>
-              Parce que vos patients comptent sur vous chaque jour, nous avons bâti un système
-              d&apos;approvisionnement redondant, des partenariats mondiaux stratégiques et une logistique
-              d&apos;exception pour que <strong>vous ne manquiez jamais de rien</strong>.
+              Parce que vos patients comptent sur vous chaque jour, nous avons
+              bâti un système d&apos;approvisionnement redondant, des
+              partenariats mondiaux stratégiques et une logistique
+              d&apos;exception pour que{" "}
+              <strong>vous ne manquiez jamais de rien</strong>.
             </p>
           </div>
 
@@ -85,16 +94,25 @@ export default function About() {
           <div className={styles.aboutHighlightContent}>
             <h3>Notre promesse inébranlable</h3>
             <p>
-              Zéro rupture de stock. Livraison garantie sous 24h. Qualité pharmaceutique
-              irréprochable. C&apos;est notre engagement quotidien envers vous.
+              Zéro rupture de stock. Livraison garantie sous 24h. Qualité
+              pharmaceutique irréprochable. C&apos;est notre engagement
+              quotidien envers vous.
             </p>
 
             <div className={styles.aboutMetrics}>
-              <div className={styles.metricItem} aria-label="Taux de disponibilité des produits">
-                <div className={styles.metricValue} data-value="99.9">99.9%</div>
+              <div
+                className={styles.metricItem}
+                aria-label="Taux de disponibilité des produits"
+              >
+                <div className={styles.metricValue} data-value="99.9">
+                  99.9%
+                </div>
                 <div className={styles.metricLabel}>Disponibilité produits</div>
               </div>
-              <div className={styles.metricItem} aria-label="Délai moyen de livraison">
+              <div
+                className={styles.metricItem}
+                aria-label="Délai moyen de livraison"
+              >
                 <div className={styles.metricValue}>&lt; 24h</div>
                 <div className={styles.metricLabel}>Délai livraison moyen</div>
               </div>

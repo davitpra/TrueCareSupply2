@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg data-bbox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-type="ugc">
+    <g>
+        <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="12ffdae1-c95b-489b-8a2e-70c97b0f568f">
+                <stop offset="0%" stop-color="#0ea5e9"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+        </defs>
+        <path fill="url(#12ffdae1-c95b-489b-8a2e-70c97b0f568f)" d="M64 12v40c0 6.627-5.373 12-12 12H12C5.373 64 0 58.627 0 52V12C0 5.373 5.373 0 12 0h40c6.627 0 12 5.373 12 12"/>
+        <text letter-spacing="1" text-anchor="middle" fill="#ffffff" font-weight="900" font-size="26" font-family="Arial Black, sans-serif" y="44" x="32">
+    TCS
+  </text>
+    </g>
+</svg>

@@ -39,7 +39,7 @@ export async function sendContactEmail(
     // Configurar email
     const emailOptions = {
       from:
-        process.env.EMAIL_FROM || "TrueCare Supply <noreply@truecaresupply.ca>",
+        process.env.EMAIL_FROM || "TrueCareSupply <noreply@truecaresupply.ca>",
       to: process.env.EMAIL_TO || "j.david.prado1716@gmail.com",
       replyTo: formData.email,
       subject: `Nouvelle demande de contact - ${formData.name}`,

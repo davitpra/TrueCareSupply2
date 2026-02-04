@@ -1,4 +1,4 @@
-import { EmailTemplateParams } from '@/types/contact';
+import { EmailTemplateParams } from "@/types/contact";
 
 export function generateContactEmailHTML(params: EmailTemplateParams): string {
   return `
@@ -13,7 +13,7 @@ export function generateContactEmailHTML(params: EmailTemplateParams): string {
 
   <!-- Header -->
   <div style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-    <h1 style="color: white; margin: 0; font-size: 24px;">TrueCare Supply</h1>
+    <h1 style="color: white; margin: 0; font-size: 24px;">TrueCareSupply</h1>
     <p style="color: #e0e7ff; margin: 5px 0 0 0;">Nouvelle demande de contact</p>
   </div>
 
@@ -81,10 +81,10 @@ export function generateContactEmailHTML(params: EmailTemplateParams): string {
   <!-- Footer -->
   <div style="background: #1f2937; padding: 20px; text-align: center; border-radius: 0 0 10px 10px;">
     <p style="color: #9ca3af; margin: 0; font-size: 14px;">
-      Ce message a été envoyé automatiquement depuis le formulaire de contact de TrueCare Supply
+      Ce message a été envoyé automatiquement depuis le formulaire de contact de TrueCareSupply
     </p>
     <p style="color: #6b7280; margin: 5px 0 0 0; font-size: 12px;">
-      © ${new Date().getFullYear()} TrueCare Supply - Tous droits réservés
+      © ${new Date().getFullYear()} TrueCareSupply - Tous droits réservés
     </p>
   </div>
 
@@ -93,9 +93,11 @@ export function generateContactEmailHTML(params: EmailTemplateParams): string {
   `.trim();
 }
 
-export function generateContactEmailPlainText(params: EmailTemplateParams): string {
+export function generateContactEmailPlainText(
+  params: EmailTemplateParams,
+): string {
   return `
-TRUECARE SUPPLY - NOUVELLE DEMANDE DE CONTACT
+TRUECARESUPPLY - NOUVELLE DEMANDE DE CONTACT
 
 Informations du contact:
 -----------------------
@@ -109,6 +111,6 @@ Message:
 ${params.message}
 
 ---
-Ce message a été envoyé automatiquement depuis le formulaire de contact de TrueCare Supply.
+Ce message a été envoyé automatiquement depuis le formulaire de contact de TrueCareSupply.
   `.trim();
 }
