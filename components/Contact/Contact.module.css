@@ -4,7 +4,9 @@
   background: white;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
 }
 
 .contactSection.visible {
@@ -20,7 +22,11 @@
 
 .sectionLabel {
   display: inline-block;
-  background: linear-gradient(135deg, rgba(0, 82, 204, 0.1), rgba(0, 212, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 82, 204, 0.1),
+    rgba(0, 212, 255, 0.1)
+  );
   color: var(--primary);
   padding: 10px 24px;
   border-radius: 50px;
@@ -58,7 +64,11 @@
 .step {
   text-align: center;
   padding: 40px 30px;
-  background: linear-gradient(135deg, rgba(0, 82, 204, 0.03), rgba(0, 212, 255, 0.03));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 82, 204, 0.03),
+    rgba(0, 212, 255, 0.03)
+  );
   border-radius: 20px;
   border: 2px solid transparent;
   transition: all 0.4s ease;
@@ -119,7 +129,7 @@
 /* Contact Channels */
 .contactChannels {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   margin-bottom: 60px;
 }
@@ -310,7 +320,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Success Message */
