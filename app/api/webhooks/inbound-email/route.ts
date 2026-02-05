@@ -63,6 +63,12 @@ export async function POST(request: NextRequest) {
     const emailData = payload.data;
     const emailId = emailData.email_id;
 
+    // Log detallado de los campos recibidos
+    console.log("Campos disponibles en emailData:", Object.keys(emailData));
+    console.log("Tiene html?", !!emailData.html);
+    console.log("Tiene text?", !!emailData.text);
+    console.log("Tiene body?", !!emailData.body);
+
     if (!emailId) {
       console.error("Email ID no encontrado en el payload");
       return NextResponse.json(
@@ -72,18 +78,42 @@ export async function POST(request: NextRequest) {
     }
 
     // Obtener el contenido completo del email desde la API de Resend
-    // IMPORTANTE: Para emails RECIBIDOS usar .receiving.get() no .get()
-    const emailContent = await resend.emails.receiving.get(emailId);
+    // IMPORTANTE: Para emails RECIBIDOS, usar el endpoint /emails/received/{id}
+    let email;
 
-    if (!emailContent || !emailContent.data) {
-      console.error("No se pudo obtener el contenido del email");
-      return NextResponse.json(
-        { success: false, error: "Error al obtener email" },
-        { status: 500 },
-      );
+    try {
+      console.log(`Obteniendo contenido del email ${emailId} desde API de Resend...`);
+
+      // Endpoint correcto para emails recibidos
+      const response = await fetch(`https://api.resend.com/emails/received/${emailId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Error API Resend (${response.status}):`, errorText);
+
+        // Si la API falla, usar los datos del webhook directamente
+        console.warn("⚠️ No se pudo obtener el contenido completo. Usando datos del webhook.");
+        email = emailData;
+      } else {
+        const emailContent = await response.json();
+        email = emailContent;
+        console.log("✅ Email obtenido exitosamente desde API");
+        console.log("Tiene html:", !!email.html);
+        console.log("Tiene text:", !!email.text);
+      }
+    } catch (error) {
+      console.error("❌ Error obteniendo contenido del email:", error);
+      // Usar los datos del webhook como respaldo
+      console.warn("⚠️ Usando datos del webhook como respaldo");
+      email = emailData;
     }
 
-    const email = emailContent.data;
     console.log("Email recibido de:", email.from);
     console.log("Asunto:", email.subject);
 
@@ -98,32 +128,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Preparar el contenido del email
+    const emailBody = email.html || email.text || "(Sin contenido)";
+    const emailTo = Array.isArray(email.to) ? email.to.join(", ") : email.to || "No especificado";
+
     // Construir el email de reenvío
     const forwardedEmail = {
       from: process.env.EMAIL_FROM || "noreply@truecaresupply.ca",
       to: forwardTo,
-      subject: `[Reenviado] ${email.subject}`,
+      subject: `[Reenviado] ${email.subject || "(Sin asunto)"}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background-color: #f3f4f6; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
             <p style="margin: 4px 0;"><strong>De:</strong> ${email.from}</p>
-            <p style="margin: 4px 0;"><strong>Para:</strong> ${email.to}</p>
-            <p style="margin: 4px 0;"><strong>Asunto:</strong> ${email.subject}</p>
+            <p style="margin: 4px 0;"><strong>Para:</strong> ${emailTo}</p>
+            <p style="margin: 4px 0;"><strong>Asunto:</strong> ${email.subject || "(Sin asunto)"}</p>
             <p style="margin: 4px 0;"><strong>Fecha:</strong> ${new Date(email.created_at).toLocaleString("es-ES")}</p>
+            ${email.email_id ? `<p style="margin: 4px 0;"><strong>ID:</strong> ${email.email_id}</p>` : ''}
           </div>
           <div style="border-left: 4px solid #3b82f6; padding-left: 16px;">
-            ${email.html || `<p style="white-space: pre-wrap;">${email.text}</p>`}
+            ${email.html || `<p style="white-space: pre-wrap;">${email.text || "(Sin contenido - el contenido completo puede no estar disponible en el webhook)"}</p>`}
           </div>
         </div>
       `,
       text: `
 --------- Mensaje Reenviado ---------
 De: ${email.from}
-Para: ${email.to}
-Asunto: ${email.subject}
+Para: ${emailTo}
+Asunto: ${email.subject || "(Sin asunto)"}
 Fecha: ${new Date(email.created_at).toLocaleString("es-ES")}
+${email.email_id ? `ID: ${email.email_id}` : ''}
 
-${email.text || ""}
+${email.text || "(Sin contenido - el contenido completo puede no estar disponible en el webhook)"}
       `,
       replyTo: email.from,
     };
