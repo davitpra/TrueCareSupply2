@@ -72,7 +72,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Obtener el contenido completo del email desde la API de Resend
-    const emailContent = await resend.emails.get(emailId);
+    // IMPORTANTE: Para emails RECIBIDOS usar .receiving.get() no .get()
+    const emailContent = await resend.emails.receiving.get(emailId);
 
     if (!emailContent || !emailContent.data) {
       console.error("No se pudo obtener el contenido del email");
